@@ -3059,6 +3059,8 @@ class TestImageSerializer(base.IsolatedUnitTest):
         req.method = 'GET'
         req.context = self.context
         response = webob.Response(request=req)
+        if response.environ is None:
+            response.environ = {}
         response.environ['eventlet.posthooks'] = []
 
         self.serializer.show(response, self.FIXTURE)
