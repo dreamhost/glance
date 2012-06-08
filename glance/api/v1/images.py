@@ -873,8 +873,6 @@ class ImageSerializer(wsgi.JSONResponseSerializer):
             logger.error(msg)
 
     def show(self, response, result):
-        if response.environ is None:
-            response.environ = response.request.environ or {}
         image_meta = result['image_meta']
         image_id = image_meta['id']
 

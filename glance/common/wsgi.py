@@ -496,6 +496,8 @@ class Resource(object):
                                       request, **action_args)
         try:
             response = webob.Response(request=request)
+            if response.environ is None:
+                response.environ = response.request.environ or {}
             self.dispatch(self.serializer, action, response, action_result)
             return response
 
